@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/vis.min.css">
+  </head>
+  <body style="margin-top:15%;">
+    <div class="container">
+
+      <div class="timeline-wrapper">
+        <ul class="timeline">
+          <div class="timeline-line"></div>
+          <li class="li complete" data-date='01.10.2017 15:00'id="first">
+            <div class="time">12/12/2016</div>
+            <a href="#" class="pop-hover" data-original-title="Title" data-content="Lorem ipsum." rel="popover" data-placement="bottom" data-trigger="hover">
+              <div class="debit-icon"><i class="fa fa-car"></i></div>
+            </a>
+            <div class="status">Checking</div>
+          </li>
+          <li class="li fail"  data-date='01.12.2017 15:00'>
+            <div class="time">12/01/2016</div>
+            <div class="debit-icon"><i class="fa fa-car"></i></div>
+            <div class="status">Checking</div>
+          </li>
+          <li class="li fail"  data-date='01.11.2017 15:00'>
+            <div class="time">11/01/2016</div>
+            <div class="debit-icon"><i class="fa fa-car"></i></div>
+            <div class="status">Checking</div>
+          </li>
+          <li class="li"  data-date='01.14.2017 15:00'>
+            <div class="time">12/12/2016</div>
+            <div class="debit-icon"><i class="fa fa-car"></i></div>
+            <div class="status">Checking</div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="./vis.min.js"></script>
+
+  <script>
+    //popup enabled
+    $('a.pop-hover').popover();
+
+    $(document).ready(function(){
+      var arr = [];
+      $('.timeline li').each(function(i , firstItem){
+
+        var date = $(firstItem).data('date');
+        console.log(date);
+        console.log(new Date(date));
+        arr.push({el:$(firstItem),date:new Date(date),left:0});
+      });
+
+      var firstItem = arr[0];
+      firstItem.left=0;
+      var lastItem = arr[arr.length-1];
+      lastItem.left=100;
+      var totalMinute = (lastItem.date.getTime()-firstItem.date.getTime());
+
+      console.log(totalMinute);
+      for(var i=1;i<arr.length-1;i++){
+        var item = arr[i];
+        var diff = item.date.getTime()-firstItem.date.getTime();
+        var percent = (diff/totalMinute)*100;
+        item.left = percent;
+        item.differentMiliseconds = diff;
+        }
+        $('.timeline li').each(function(i , el){
+          var item = arr[i];
+          $(el).data('percent',item.left);
+
+          $(el).css('left',item.left+'%');
+        });
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+</html>

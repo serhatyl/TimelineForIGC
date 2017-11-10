@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./vis.min.js"></script>
+    <link rel="stylesheet" href="./css/vis.min.css">
+    <style>
+      .vis-item {
+        border-color: #ddd;
+        background-color: #ddd;
+        color: #fff;
+      }
+
+      .vis-item.vis-selected.vis-selected{
+        border-color: #8dd5f1;
+        background-color: #8dd5f1;
+      }
+
+      .fail-vis-item{
+        border-color: #ff6e6e;
+        background-color: #ff6e6e;
+      }
+
+      .success-vis-item{
+        border-color: #67dc71;
+        background-color: #67dc71;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="visualization"></div>
+
+    <script type="text/javascript">
+    // DOM element where the Timeline will be attached
+    var container = document.getElementById('visualization');
+
+    var items = new vis.DataSet([
+      {id: 1, content: '<i class="fa fa-check mr5"></i>item 1', start: '2017-11-10' , className : 'fail-vis-item'},
+      {id: 2, content: '<i class="fa fa-car mr5"></i>item 2', start: '2017-11-14' , className:'success-vis-item'},
+      {id: 3, content: 'item 3', start: '2017-11-18'},
+      {id: 4, content: 'item 4', start: '2017-11-16', end: '2017-11-19'},
+      {id: 5, content: 'item 5', start: '2017-11-25'},
+      {id: 6, content: 'item 6', start: '2017-11-27'}
+    ]);
+    // Configuration for the Timeline
+    var options = {
+      locale: 'tr'
+    };
+    // Create a Timeline
+    var timeline = new vis.Timeline(container, items, options);
+    </script>
+
+  </body>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</html>
