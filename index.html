@@ -59,10 +59,16 @@
       $('.timeline li').each(function(i , firstItem){
 
         var date = $(firstItem).data('date');
+        /*
         console.log(date);
         console.log(new Date(date));
+        */
         arr.push({el:$(firstItem),date:new Date(date),left:0});
       });
+
+      for (var i = 0; i < arr.length; i++) {
+        console.log($(arr[i]).data('date'));
+      }
 
       var firstItem = arr[0];
       firstItem.left=0;
@@ -83,6 +89,7 @@
           $(el).data('percent',item.left);
 
           $(el).css('left',item.left+'%');
+
         });
 
     });
